@@ -55,6 +55,7 @@ try:
     tweet_text += 'ANALYSIS:\n'
     tweet_text += '{} should be nationalized'.format(ticker)
     print(tweet_text)
+    api.update_status(tweet_text)
 
 except KeyError:
     print('KeyError')
@@ -65,4 +66,3 @@ except RemoteDataError:
     # temp_tweet = "Testing, testing, one two three: " + date_str
 
 # print(temp_tweet)
-# api.update_status(temp_tweet)
