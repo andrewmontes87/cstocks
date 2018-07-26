@@ -19,6 +19,9 @@ INTERVAL = 60 * 10  # tweet every 6 hours
 
 temp_tweet = "Testing, testing, one two three: " + datetime.str datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
+print("Starting here!")
+
 while True:
+	print(temp_tweet)
 	api.update_status(temp_tweet)
     time.sleep(INTERVAL)
