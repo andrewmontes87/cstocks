@@ -15,13 +15,13 @@ auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 api = tweepy.API(auth)
 
-INTERVAL = 60 * 10  # tweet every 10 min
+# INTERVAL = 60 * 10  # tweet every 10 min
 
 temp_tweet = "Testing, testing, one two three: " + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 print("Starting here!")
 
-while True:
-    print(temp_tweet)
-    api.update_status(temp_tweet)
-    time.sleep(INTERVAL)
+# while True:
+print(temp_tweet)
+api.update_status(temp_tweet)
+# time.sleep(INTERVAL)
