@@ -1,9 +1,9 @@
 import numpy as np
 import pandas as pd
 import pandas_datareader as pdr
-import sys, json, datetime, tweepy
+import sys, json, datetime, tweepy, time
 
-# import credentials
+# from credentials import *
 
 from os import environ
 CONSUMER_KEY = environ['CONSUMER_KEY']
