@@ -1,2 +1,2 @@
-web: python3 server.py
-worker: python3 post.py
+web: python server.py
+worker: python post.py
