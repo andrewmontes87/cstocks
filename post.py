@@ -28,13 +28,13 @@ ticker = np.random.choice(TICKERS)
 
 format_string = '%Y-%m-%d'
 
-now_datetime = datetime.datetime.now() - datetime.timedelta(hours=24)
+now_datetime = datetime.datetime.now()
 end_str = datetime.datetime.strftime(now_datetime, format_string)
 end_datetime = datetime.datetime.strptime(end_str, format_string)
 
-start_datetime = datetime.datetime.strptime(end_str, format_string) - datetime.timedelta(hours=108)
+start_datetime = end_datetime - datetime.timedelta(hours=108)
 
-print(start_datetime, end_datetime)
+print(ticker, start_datetime, end_datetime)
 
 try:
     ya = pdr.yahoo.daily.YahooDailyReader([ticker],
@@ -45,6 +45,7 @@ try:
     df = pd.DataFrame(df.stack()).reset_index()
     df = df.sort_values(by=['Date'], ascending=[False])
     df = df.head(1)
+
     _date = list(df['Date'].unique()).pop()
     _open = float(list(df['Open'].unique()).pop())
     _close = float(list(df['Close'].unique()).pop())
@@ -52,6 +53,7 @@ try:
     _percent_change = _diff / _open * 100
     _up_down = 'up' if _diff > 0 else 'down'
     _gain_loss = 'gain' if _diff > 0 else 'loss'
+
     tweet_text = end_str
     tweet_text += '\nFUNDAMENTALS:\n'
     tweet_text += '{} is {} in the latest trading session, '.format(ticker, _up_down)
@@ -59,6 +61,7 @@ try:
     tweet_text += 'for a {} of {:.2f}%\n\n'.format(_gain_loss, _percent_change)
     tweet_text += 'ANALYSIS:\n'
     tweet_text += '{} should be nationalized'.format(ticker)
+
     print(tweet_text)
     api.update_status(tweet_text)
 
@@ -68,6 +71,3 @@ except KeyError:
 except RemoteDataError:
     print('RemoteDataError')
 
-    # temp_tweet = "Testing, testing, one two three: " + date_str
-
-# print(temp_tweet)
