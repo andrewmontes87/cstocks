@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-import pandas_datareader as pdf
+import pandas_datareader as pdr
 import sys, json, datetime, tweepy
 
 # import credentials
@@ -17,11 +17,11 @@ api = tweepy.API(auth)
 
 INTERVAL = 60 * 10  # tweet every 6 hours
 
-temp_tweet = "Testing, testing, one two three: " + datetime.str datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+temp_tweet = "Testing, testing, one two three: " + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 print("Starting here!")
 
 while True:
-	print(temp_tweet)
-	api.update_status(temp_tweet)
+    print(temp_tweet)
+    api.update_status(temp_tweet)
     time.sleep(INTERVAL)
