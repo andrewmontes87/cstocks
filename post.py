@@ -24,13 +24,17 @@ auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 api = tweepy.API(auth)
 
-
 ticker = np.random.choice(TICKERS)
 
-end_datetime = datetime.datetime.now() 
-start_datetime = end_datetime - datetime.timedelta(hours=48)
+format_string = '%Y-%m-%d'
 
-# date_str = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+now_datetime = datetime.datetime.now() - datetime.timedelta(hours=24)
+end_str = datetime.datetime.strftime(now_datetime, format_string)
+end_datetime = datetime.datetime.strptime(end_str, format_string)
+
+start_datetime = datetime.datetime.strptime(end_str, format_string) - datetime.timedelta(hours=108)
+
+print(start_datetime, end_datetime)
 
 try:
     ya = pdr.yahoo.daily.YahooDailyReader([ticker],
@@ -48,8 +52,9 @@ try:
     _percent_change = _diff / _open * 100
     _up_down = 'up' if _diff > 0 else 'down'
     _gain_loss = 'gain' if _diff > 0 else 'loss'
-    tweet_text = 'FUNDAMENTALS:\n'
-    tweet_text += '{} is {} today, '.format(ticker, _up_down)
+    tweet_text = end_str
+    tweet_text += '\nFUNDAMENTALS:\n'
+    tweet_text += '{} is {} in the latest trading session, '.format(ticker, _up_down)
     tweet_text += 'opening at {:.2f} and closing at {:.2f} '.format(_open, _close)
     tweet_text += 'for a {} of {:.2f}%\n\n'.format(_gain_loss, _percent_change)
     tweet_text += 'ANALYSIS:\n'
