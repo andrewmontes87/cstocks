@@ -27,10 +27,10 @@ api = tweepy.API(auth)
 
 ticker = np.random.choice(TICKERS)
 
-end_datetime =datetime.datetime.now() 
-start_datetime = end_datetime - datetime.timedelta(hours=24)
+end_datetime = datetime.datetime.now() 
+start_datetime = end_datetime - datetime.timedelta(hours=48)
 
-date_str = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+# date_str = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 try:
     ya = pdr.yahoo.daily.YahooDailyReader([ticker],
