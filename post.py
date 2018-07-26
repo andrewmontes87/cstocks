@@ -7,13 +7,13 @@ pd.core.common.is_list_like = pd.api.types.is_list_like
 import pandas_datareader as pdr
 import sys, json, datetime, tweepy, time
 
-from credentials import *
+# from credentials import *
 
-# from os import environ
-# CONSUMER_KEY = environ['CONSUMER_KEY']
-# CONSUMER_SECRET = environ['CONSUMER_SECRET']
-# ACCESS_KEY = environ['ACCESS_KEY']
-# ACCESS_SECRET = environ['ACCESS_SECRET']
+from os import environ
+CONSUMER_KEY = environ['CONSUMER_KEY']
+CONSUMER_SECRET = environ['CONSUMER_SECRET']
+ACCESS_KEY = environ['ACCESS_KEY']
+ACCESS_SECRET = environ['ACCESS_SECRET']
 
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
