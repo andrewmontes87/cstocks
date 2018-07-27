@@ -34,7 +34,7 @@ end_datetime = datetime.datetime.strptime(end_str, format_string)
 
 start_datetime = end_datetime - datetime.timedelta(hours=108)
 
-print(ticker, start_datetime, end_datetime)
+# print(ticker, start_datetime, end_datetime)
 
 try:
     ya = pdr.yahoo.daily.YahooDailyReader([ticker],
@@ -54,15 +54,31 @@ try:
     _up_down = 'up' if _diff > 0 else 'down'
     _gain_loss = 'gain' if _diff > 0 else 'loss'
 
-    tweet_text = end_str
-    tweet_text += '\nFUNDAMENTALS:\n'
-    tweet_text += '{} is {} in the latest trading session, '.format(ticker, _up_down)
-    tweet_text += 'opening at {:.2f} and closing at {:.2f} '.format(_open, _close)
-    tweet_text += 'for a {} of {:.2f}%\n\n'.format(_gain_loss, _percent_change)
-    tweet_text += 'ANALYSIS:\n'
-    tweet_text += '{} should be nationalized'.format(ticker)
+    chart_increasing =  u'\U0001F4C8'
+    bar_chart =  u'\U0001F4CA'
+    chart_with_downwards_trend =  u'\U0001F4C9'
+    chart_with_upwards_trend =  u'\U0001F4C8'
+    chart =  u'\U0001F4B9'
+    moneybag =  u'\U0001F4B0'
+    dollar_banknote =  u'\U0001F4B5'
 
-    print(tweet_text)
+    up_arrow = u'\U00002B06'
+    down_arrow = u'\U00002B07'
+
+    hammer_and_sickle =  u'\U0000262D'
+
+    _chart_with_trend = chart_with_upwards_trend if _diff > 0 else chart_with_downwards_trend
+    _up_down_arrow = up_arrow if _diff > 0 else down_arrow
+
+    tweet_text = '${}: {}'.format(ticker, end_str)
+    tweet_text += '\n\n{} FUNDAMENTALS:\n'.format(bar_chart)
+    tweet_text += '${} is {} {} in the latest trading session, '.format(ticker, _up_down, _up_down_arrow)
+    tweet_text += 'opening at {:.2f} and closing at {:.2f} '.format(_open, _close)
+    tweet_text += 'for a {} of {:.2f}%\n\n{} {} {}\n\n'.format(_gain_loss, _percent_change, _chart_with_trend, _chart_with_trend, _chart_with_trend)
+    tweet_text += '{} ANALYSIS:\n'.format(hammer_and_sickle)
+    tweet_text += '${} should be nationalized'.format(ticker)
+
+    # print(tweet_text)
     api.update_status(tweet_text)
 
 except KeyError:
