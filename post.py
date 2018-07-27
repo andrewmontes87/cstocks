@@ -71,12 +71,12 @@ try:
     _up_down_arrow = up_arrow if _diff > 0 else down_arrow
 
     tweet_text = '${}: {}'.format(ticker, end_str)
-    tweet_text += '\n\nSTOCK QUOTE:\n'
+    tweet_text += '\n\n{} STOCK QUOTE:\n'.format(moneybag)
     tweet_text += '${} is {} {} in the latest trading session, '.format(ticker, _up_down, _up_down_arrow)
     tweet_text += 'opening at {:.2f} and closing at {:.2f} '.format(_open, _close)
-    tweet_text += 'for a {} of {:.2f}%\n\n{} {} {}\n\n'.format(_gain_loss, _percent_change, _chart_with_trend, bar_chart, _chart_with_trend)
-    tweet_text += 'ANALYSIS:\n'
-    tweet_text += '${} should be nationalized\n\n{} {} {}'.format(ticker, hammer_and_sickle, hammer_and_sickle, hammer_and_sickle)
+    tweet_text += 'for a {} of {:.2f}%\n{} {} {}\n\n'.format(_gain_loss, _percent_change, _chart_with_trend, _chart_with_trend, _chart_with_trend)
+    tweet_text += '{} ANALYSIS:\n'.format(bar_chart)
+    tweet_text += '${} should be nationalized\n{} {} {}'.format(ticker, hammer_and_sickle, hammer_and_sickle, hammer_and_sickle)
 
     # print(tweet_text)
     api.update_status(tweet_text)
