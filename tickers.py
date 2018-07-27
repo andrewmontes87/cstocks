@@ -490,7 +490,7 @@ TICKERS = [
     ('LEG', 'Leggett & Platt'),
     ('NFX', 'Newfield Exploration'),
     ('GT', 'Goodyear Tire & Rubber'),
-    ('NWSA', 'News'),
+    ('NWSA', 'News Corp'),
     ('AIZ', 'Assurant'),
     ('MAT', 'Mattel'),
     ('SRCL', 'Stericycle'),
@@ -504,5 +504,5 @@ TICKERS = [
     ('DISCA', 'Discovery'),
     ('UAA', 'Under Armour'),
     ('UA', 'Under Armour'),
-    ('NWS', 'News')
+    ('NWS', 'News Corp')
 ]
