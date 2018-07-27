@@ -11,14 +11,14 @@ from pandas_datareader._utils import RemoteDataError
 from tickers import *
 
 ### DEV
-from credentials import *
+# from credentials import *
 
 ### PROD
-# from os import environ
-# CONSUMER_KEY = environ['CONSUMER_KEY']
-# CONSUMER_SECRET = environ['CONSUMER_SECRET']
-# ACCESS_KEY = environ['ACCESS_KEY']
-# ACCESS_SECRET = environ['ACCESS_SECRET']
+from os import environ
+CONSUMER_KEY = environ['CONSUMER_KEY']
+CONSUMER_SECRET = environ['CONSUMER_SECRET']
+ACCESS_KEY = environ['ACCESS_KEY']
+ACCESS_SECRET = environ['ACCESS_SECRET']
 
 ## connect to twitter api
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
