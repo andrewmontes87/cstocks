@@ -11,20 +11,24 @@ import pandas_datareader as pdr
 from pandas_datareader._utils import RemoteDataError
 
 ### DEV
-# from credentials import *
+from credentials import *
 
 ### PROD
-from os import environ
-CONSUMER_KEY = environ['CONSUMER_KEY']
-CONSUMER_SECRET = environ['CONSUMER_SECRET']
-ACCESS_KEY = environ['ACCESS_KEY']
-ACCESS_SECRET = environ['ACCESS_SECRET']
+# from os import environ
+# CONSUMER_KEY = environ['CONSUMER_KEY']
+# CONSUMER_SECRET = environ['CONSUMER_SECRET']
+# ACCESS_KEY = environ['ACCESS_KEY']
+# ACCESS_SECRET = environ['ACCESS_SECRET']
 
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 api = tweepy.API(auth)
 
-ticker = np.random.choice(TICKERS)
+N = len(TICKERS)
+
+choice = list(np.random.randint(N, size=1)).pop()
+
+ticker, name = TICKERS[choice]
 
 format_string = '%Y-%m-%d'
 
@@ -70,16 +74,16 @@ try:
     _chart_with_trend = chart_with_upwards_trend if _diff > 0 else chart_with_downwards_trend
     _up_down_arrow = up_arrow if _diff > 0 else down_arrow
 
-    tweet_text = '${}: {}'.format(ticker, end_str)
+    tweet_text = '{}: {}'.format(name, end_str)
     tweet_text += '\n\n{} STOCK QUOTE:\n'.format(moneybag)
     tweet_text += '${} is {} {} in the latest trading session, '.format(ticker, _up_down, _up_down_arrow)
     tweet_text += 'opening at {:.2f} and closing at {:.2f} '.format(_open, _close)
     tweet_text += 'for a {} of {:.2f}%\n{} {} {}\n\n'.format(_gain_loss, _percent_change, _chart_with_trend, _chart_with_trend, _chart_with_trend)
     tweet_text += '{} ANALYSIS:\n'.format(bar_chart)
-    tweet_text += '${} should be nationalized\n{} {} {}'.format(ticker, hammer_and_sickle, hammer_and_sickle, hammer_and_sickle)
+    tweet_text += '{} should be nationalized\n{} {} {}'.format(name, hammer_and_sickle, hammer_and_sickle, hammer_and_sickle)
 
-    # print(tweet_text)
-    api.update_status(tweet_text)
+    print(tweet_text)
+    # api.update_status(tweet_text)
 
 except KeyError:
     print('KeyError')
